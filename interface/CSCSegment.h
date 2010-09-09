@@ -6,7 +6,7 @@
  *  This is 4-dimensional since it has an origin (x,y) and a direction (x,y)
  *  in the local coordinate system of the chamber.
  *
- *  $Date: 2007/07/26 06:16:09 $
+ *  $Date: 2010/05/22 17:42:15 $
  *  \author Matteo Sani
  *  \author Rick Wilkinson
  *  \author Tim Cox
@@ -69,7 +69,7 @@ public:
 
     CSCDetId cscDetId() const { return  geographicalId(); }
 
-    void setDuplicateSegments(std::vector<CSCSegment*> duplicates);
+    void setDuplicateSegments(std::vector<CSCSegment*>& duplicates);
 
     bool isME11a_duplicate() const { return (theDuplicateSegments.size() > 0 ? true : false); }
     // a copy of the duplicated segments (ME1/1a only) 
@@ -82,6 +82,8 @@ public:
     //bool sharesRecHits(CSCSegment  & anotherSegment, CSCRecHit2D::SharedInputType);
     // checks if ALL the rechits share the specific input (allWires, allStrips or all)
     bool sharesRecHits(const CSCSegment  & anotherSegment, CSCRecHit2D::SharedInputType sharesInput) const;
+    // checks if ALL the rechits share SOME wire AND SOME strip input
+    bool sharesRecHits(const CSCSegment  & anotherSegment) const;
     
     void print() const;		
     
